@@ -1,4 +1,4 @@
-# My Finance Manager - Frontend
+# Personal-Finance-Manager - Frontend
 
 A modern React-based web application for personal finance management with AI-powered receipt scanning capabilities.
 
