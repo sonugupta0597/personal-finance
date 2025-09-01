@@ -1,233 +1,348 @@
-# My Finance Manager Backend
+# Personal-Finance-Manager - Backend
 
-A Spring Boot backend application for managing personal finances with AI-powered receipt and transaction processing.
+A robust Spring Boot REST API for personal finance management with AI-powered receipt processing using Google Gemini AI.
 
-## Features
+## 🚀 Features
 
-- **User Management**: User registration, authentication, and profile management
-- **Expense Tracking**: Record and categorize expenses
-- **Income Management**: Track income sources and amounts
-- **Receipt Processing**: Upload and process receipts using Gemini AI
-- **Transaction History**: View and analyze financial transactions
-- **AI-Powered Data Extraction**: Extract transaction information from PDFs and images using Google's Gemini AI
-- **Financial Reports**: Generate summaries and reports
+- **RESTful API**: Complete CRUD operations for financial transactions
+- **AI-Powered Receipt Processing**: Google Gemini AI integration for automatic data extraction
+- **User Management**: Secure authentication and user account management
+- **Financial Analytics**: Comprehensive reporting and data analysis
+- **PDF Processing**: Advanced PDF parsing and text extraction
+- **Database Integration**: MySQL database with JPA/Hibernate ORM
+- **File Upload**: Secure file handling for receipts and documents
 
-## AI Integration
+## 🛠️ Tech Stack
 
-### Gemini AI for Document Processing
+- **Spring Boot 3.5.5** - Modern Java framework
+- **Spring Data JPA** - Database abstraction layer
+- **MySQL 8.0** - Relational database
+- **Apache PDFBox 2.0.29** - PDF processing library
+- **Apache Tika 2.9.1** - Content detection and extraction
+- **Google Gemini AI** - AI-powered receipt analysis
+- **Lombok** - Java boilerplate reduction
+- **Maven** - Build and dependency management
 
-The backend integrates with Google's Gemini AI to intelligently extract financial information from:
+## 📋 Prerequisites
 
-- **PDF Bank Statements**: Automatically extract transactions, dates, amounts, and descriptions
-- **Receipt Images**: Identify merchants, amounts, categories, and transaction details
-- **Financial Documents**: Parse complex financial statements and reports
+Before running this application, ensure you have:
 
-#### How It Works
+- **Java 17** or higher
+- **Maven 3.6+**
+- **MySQL 8.0+** database server
+- **Google Gemini AI API Key** (for receipt processing)
 
-1. **Document Upload**: Users upload PDFs or images through the frontend
-2. **AI Processing**: Gemini AI analyzes the document content and extracts structured data
-3. **Data Validation**: The system validates and processes the extracted information
-4. **Database Storage**: Clean, structured data is stored in the database
-5. **Fallback Processing**: If AI extraction fails, the system falls back to pattern-based text extraction
+## 🚀 Getting Started
 
-#### Supported Document Types
+### 1. Database Setup
 
-- **PDFs**: Bank statements, credit card statements, financial reports
-- **Images**: Receipt photos, invoice images, document scans
-- **Text Files**: Plain text financial documents
-
-#### AI Extraction Capabilities
-
-- **Transaction Details**: Date, description, amount, type (income/expense)
-- **Receipt Information**: Merchant name, amount, currency, date, category
-- **Smart Categorization**: Automatic classification of expenses and income
-- **Data Validation**: Ensures extracted data meets business rules
-
-## Technology Stack
-
-- **Framework**: Spring Boot 3.5.5
-- **Database**: MySQL 8.0 with JPA/Hibernate
-- **AI Service**: Google Gemini AI (gemini-pro and gemini-pro-vision models)
-- **File Processing**: Apache Tika for text extraction
-- **Build Tool**: Maven
-- **Java Version**: 11
-
-## Setup Instructions
-
-### Prerequisites
-
-- Java 11 or higher
-- Maven 3.6+
-- MySQL 8.0+
-- Gemini AI API key
-
-### Configuration
-
-1. **Database Setup**
+1. **Install MySQL** if not already installed
+2. **Create Database**:
    ```sql
-   CREATE DATABASE my_finance_manager;
+   CREATE DATABASE finance_db;
    ```
-
-2. **Application Properties**
+3. **Configure Database Connection** in `application.properties`:
    ```properties
-   # Database Configuration
-   spring.datasource.url=jdbc:mysql://localhost:3306/my_finance_manager
+   spring.datasource.url=jdbc:mysql://localhost:3306/finance_db?useSSL=false&serverTimezone=UTC
    spring.datasource.username=your_username
    spring.datasource.password=your_password
-   
-   # Gemini AI Configuration
+   ```
+
+### 2. API Configuration
+
+1. **Get Google Gemini AI API Key**:
+   - Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - Create a new API key
+   - Add it to `application.properties`:
+   ```properties
    gemini.api.key=your_gemini_api_key
-   gemini.api.url=https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent
-   gemini.model.name=gemini-pro-vision
-   
-   # File Upload Configuration
-   spring.servlet.multipart.max-file-size=10MB
-   spring.servlet.multipart.max-request-size=10MB
    ```
 
-3. **Gemini AI Setup**
-   - Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
-   - Update the `gemini.api.key` property in `application.properties`
+### 3. Build and Run
 
-### Running the Application
+```bash
+# Navigate to the backend directory
+cd my_finance_manager_backend/my_finance_manager_backend
 
-1. **Clone and Navigate**
-   ```bash
-   cd my_finance_manager_backend
-   ```
+# Build the project
+mvn clean install
 
-2. **Build the Project**
-   ```bash
-   ./mvnw clean install
-   ```
+# Run the application
+mvn spring-boot:run
+```
 
-3. **Run the Application**
-   ```bash
-   ./mvnw spring-boot:run
-   ```
+The API will be available at `http://localhost:8080`
 
-4. **Run Tests**
-   ```bash
-   ./mvnw test
-   ```
+## 📁 Project Structure
 
-## API Endpoints
+```
+src/main/java/com/my_finance_manager_backend/
+├── config/                     # Configuration classes
+│   ├── GeminiConfig.java      # Gemini AI configuration
+│   ├── SecurityConfig.java    # Security settings
+│   └── WebConfig.java         # Web configuration
+├── controller/                 # REST API controllers
+│   ├── BillScanController.java # Receipt processing endpoints
+│   ├── ExpenseController.java  # Expense management
+│   ├── IncomeController.java   # Income management
+│   ├── ReceiptController.java  # Receipt upload/management
+│   ├── TransactionHistoryController.java # Transaction history
+│   └── UserController.java     # User management
+├── dto/                        # Data Transfer Objects
+│   ├── BillScanResultDTO.java  # AI scan results
+│   ├── ExpenseRequest.java     # Expense request/response
+│   ├── IncomeRequest.java      # Income request/response
+│   ├── ReceiptDTO.java         # Receipt data
+│   └── TransactionDTO.java     # Transaction data
+├── exception/                  # Exception handling
+│   ├── GlobalExceptionHandler.java # Global error handling
+│   └── ResourceNotFoundException.java # Custom exceptions
+├── model/                      # Entity models
+│   ├── Expense.java           # Expense entity
+│   ├── Income.java            # Income entity
+│   ├── Receipt.java           # Receipt entity
+│   └── User.java              # User entity
+├── repository/                 # Data access layer
+│   ├── ExpenseRepository.java  # Expense data operations
+│   ├── IncomeRepository.java   # Income data operations
+│   ├── ReceiptRepository.java  # Receipt data operations
+│   └── UserRepository.java     # User data operations
+├── security/                   # Security components
+│   ├── CustomUserDetailsService.java # User details service
+│   ├── JwtAuthenticationFilter.java # JWT filter
+│   └── JwtUtil.java           # JWT utilities
+├── service/                    # Business logic layer
+│   ├── ExpenseService.java     # Expense business logic
+│   ├── GeminiAIService.java    # AI integration service
+│   ├── IncomeService.java      # Income business logic
+│   ├── ReceiptService.java     # Receipt processing service
+│   ├── TransactionHistoryService.java # Transaction history
+│   └── UserService.java        # User business logic
+└── MyFinanceManagerBackendApplication.java # Main application class
+```
+
+## 🔌 API Endpoints
 
 ### Authentication
 - `POST /api/auth/register` - User registration
 - `POST /api/auth/login` - User login
+- `POST /api/auth/logout` - User logout
+
+### Transactions
+- `GET /api/transactions` - Get all transactions
+- `POST /api/transactions` - Create new transaction
+- `GET /api/transactions/{id}` - Get transaction by ID
+- `PUT /api/transactions/{id}` - Update transaction
+- `DELETE /api/transactions/{id}` - Delete transaction
 
 ### Expenses
-- `GET /api/expenses` - List all expenses
+- `GET /api/expenses` - Get all expenses
 - `POST /api/expenses` - Create new expense
 - `GET /api/expenses/{id}` - Get expense by ID
 - `PUT /api/expenses/{id}` - Update expense
 - `DELETE /api/expenses/{id}` - Delete expense
 
 ### Income
-- `GET /api/income` - List all income
-- `POST /api/income` - Create new income
-- `GET /api/income/{id}` - Get income by ID
-- `PUT /api/income/{id}` - Update income
-- `DELETE /api/income/{id}` - Delete income
+- `GET /api/incomes` - Get all income entries
+- `POST /api/incomes` - Create new income entry
+- `GET /api/incomes/{id}` - Get income by ID
+- `PUT /api/incomes/{id}` - Update income
+- `DELETE /api/incomes/{id}` - Delete income
 
-### Receipts
-- `POST /api/receipts/upload` - Upload receipt for AI processing
-- `GET /api/receipts` - List all receipts
+### Receipt Processing
+- `POST /api/receipts/upload` - Upload and process receipt
+- `GET /api/receipts` - Get all receipts
 - `GET /api/receipts/{id}` - Get receipt by ID
 - `DELETE /api/receipts/{id}` - Delete receipt
-- `POST /api/receipts/{id}/reprocess` - Reprocess receipt with AI
 
-### Transactions
-- `POST /api/transactions/extract` - Extract transactions from PDF
-- `GET /api/transactions` - List transactions with pagination
-- `GET /api/transactions/summary` - Get financial summary
+### Analytics
+- `GET /api/analytics/summary` - Get financial summary
+- `GET /api/analytics/expenses-by-category` - Expenses by category
+- `GET /api/analytics/income-vs-expense` - Income vs expense comparison
 
-## AI Processing Workflow
+## 🤖 AI Integration
 
-### PDF Transaction Extraction
+### Google Gemini AI Features
+- **Receipt Text Extraction**: Extract text from PDF receipts
+- **Data Parsing**: Parse amounts, dates, merchants, and items
+- **Category Detection**: Automatically categorize transactions
+- **Error Handling**: Robust error handling for AI processing
 
-1. **Upload PDF**: User uploads a bank statement or financial document
-2. **Text Extraction**: Apache Tika extracts raw text content
-3. **AI Analysis**: Gemini AI analyzes the text and identifies transactions
-4. **Data Parsing**: System parses AI response into structured transaction data
-5. **Validation**: Data is validated against business rules
-6. **Storage**: Valid transactions are saved to the database
-
-### Receipt Image Processing
-
-1. **Image Upload**: User uploads a receipt photo
-2. **Vision Analysis**: Gemini Vision AI analyzes the image content
-3. **Data Extraction**: AI extracts merchant, amount, date, and category
-4. **Smart Categorization**: System automatically categorizes the expense
-5. **Storage**: Receipt data is saved with AI confidence scores
-
-## Error Handling
-
-The system includes comprehensive error handling:
-
-- **AI Service Failures**: Graceful fallback to pattern-based extraction
-- **File Processing Errors**: Detailed error messages and logging
-- **Data Validation**: Input validation and business rule enforcement
-- **API Errors**: Standardized error responses with appropriate HTTP status codes
-
-## Testing
-
-The application includes comprehensive test coverage:
-
-- **Unit Tests**: Service layer testing with Mockito
-- **Integration Tests**: End-to-end API testing
-- **AI Service Tests**: Mocked Gemini AI responses for testing
-
-Run tests with:
-```bash
-./mvnw test
+### Configuration
+```properties
+# Gemini AI Configuration
+gemini.api.key=your_api_key_here
+gemini.api.url=https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent
+gemini.model.name=gemini-1.5-flash
 ```
 
-## Performance Considerations
+## 📊 Database Schema
 
-- **File Size Limits**: 10MB maximum file size for uploads
-- **AI API Rate Limiting**: Respects Gemini AI rate limits
-- **Database Optimization**: Efficient queries and indexing
-- **Caching**: Spring Boot's built-in caching mechanisms
+### Users Table
+- `id` (Primary Key)
+- `email` (Unique)
+- `password` (Encrypted)
+- `created_at`
+- `updated_at`
 
-## Security Features
+### Expenses Table
+- `id` (Primary Key)
+- `user_id` (Foreign Key)
+- `amount`
+- `description`
+- `category`
+- `date`
+- `notes`
+- `created_at`
+- `updated_at`
 
-- **JWT Authentication**: Secure token-based authentication
-- **Input Validation**: Comprehensive input sanitization
-- **File Upload Security**: File type and size validation
-- **API Security**: Protected endpoints with authentication
+### Income Table
+- `id` (Primary Key)
+- `user_id` (Foreign Key)
+- `amount`
+- `description`
+- `category`
+- `date`
+- `notes`
+- `created_at`
+- `updated_at`
 
-## Monitoring and Logging
+### Receipts Table
+- `id` (Primary Key)
+- `user_id` (Foreign Key)
+- `filename`
+- `file_path`
+- `file_size`
+- `upload_date`
+- `processed_data` (JSON)
+- `status`
 
-- **Application Logs**: Detailed logging for debugging
-- **AI Processing Logs**: Track AI extraction success/failure rates
-- **Performance Metrics**: Monitor API response times
-- **Error Tracking**: Comprehensive error logging and reporting
+## 🔧 Configuration
 
-## Future Enhancements
+### Application Properties
+```properties
+# Server Configuration
+server.port=8080
+spring.application.name=my_finance_manager_backend
 
-- **Batch Processing**: Process multiple documents simultaneously
-- **Advanced Analytics**: Machine learning for spending patterns
-- **Multi-language Support**: Process documents in multiple languages
-- **Real-time Processing**: WebSocket-based real-time updates
-- **Mobile Optimization**: Enhanced mobile API endpoints
+# Database Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/finance_db?useSSL=false&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=your_password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
-## Contributing
+# JPA Configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# File Upload Configuration
+spring.servlet.multipart.max-file-size=10MB
+spring.servlet.multipart.max-request-size=10MB
+
+# Gemini AI Configuration
+gemini.api.key=your_gemini_api_key
+gemini.api.url=https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent
+gemini.model.name=gemini-1.5-flash
+```
+
+## 🧪 Testing
+
+Run the test suite:
+
+```bash
+mvn test
+```
+
+### Test Coverage
+- **Unit Tests**: Service layer testing
+- **Integration Tests**: API endpoint testing
+- **AI Service Tests**: Gemini AI integration testing
+
+## 📦 Building for Production
+
+### Create JAR File
+```bash
+mvn clean package
+```
+
+### Run Production Build
+```bash
+java -jar target/my_finance_manager_backend-0.0.1-SNAPSHOT.jar
+```
+
+## 🔒 Security Features
+
+- **JWT Authentication**: Token-based authentication
+- **Password Encryption**: Secure password hashing
+- **Input Validation**: Request validation and sanitization
+- **CORS Configuration**: Cross-origin resource sharing setup
+- **File Upload Security**: Secure file handling
+
+## 🚀 Deployment
+
+### Docker Deployment
+```dockerfile
+FROM openjdk:17-jdk-slim
+COPY target/my_finance_manager_backend-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/app.jar"]
+```
+
+### Environment Variables
+```bash
+export SPRING_DATASOURCE_URL=jdbc:mysql://your-db-host:3306/finance_db
+export SPRING_DATASOURCE_USERNAME=your_username
+export SPRING_DATASOURCE_PASSWORD=your_password
+export GEMINI_API_KEY=your_gemini_api_key
+```
+
+## 📈 Performance Optimization
+
+- **Database Indexing**: Optimized database queries
+- **Connection Pooling**: HikariCP connection pool
+- **Caching**: Spring Boot caching support
+- **Async Processing**: Background task processing
+
+## 🔍 Monitoring and Logging
+
+- **Spring Boot Actuator**: Health checks and metrics
+- **Logging**: Structured logging with SLF4J
+- **Error Tracking**: Global exception handling
+- **Performance Monitoring**: Request/response timing
+
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## License
+## 📝 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Support
+## 🆘 Support
 
 For support and questions:
-- Create an issue in the repository
-- Check the documentation
+- Check the API documentation
 - Review the test cases for usage examples
+- Open an issue in the repository
+
+## 🔄 Version History
+
+- **v0.0.1-SNAPSHOT** - Initial release
+  - Core CRUD operations
+  - AI-powered receipt processing
+  - User authentication
+  - Financial analytics
+  - PDF processing capabilities
+
+## 📚 Additional Resources
+
+- [Spring Boot Documentation](https://spring.io/projects/spring-boot)
+- [Google Gemini AI Documentation](https://ai.google.dev/docs)
+- [MySQL Documentation](https://dev.mysql.com/doc/)
+- [Apache PDFBox Documentation](https://pdfbox.apache.org/)

@@ -1,6 +1,6 @@
 # Gemini AI Integration Demo
 
-This document demonstrates how the Gemini AI integration works in the My Finance Manager backend for extracting transaction information from PDFs and images.
+This document demonstrates how the Gemini AI integration works in the Personal-Finance-Manager backend for extracting transaction information from PDFs and images.
 
 ## Overview
 

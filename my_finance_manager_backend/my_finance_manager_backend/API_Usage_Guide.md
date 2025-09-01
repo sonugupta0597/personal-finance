@@ -1,6 +1,6 @@
 # API Usage Guide - Receipt Upload and PDF Transaction Extraction
 
-This guide demonstrates how to use the **fully functional** receipt upload and PDF transaction extraction features in your My Finance Manager backend.
+This guide demonstrates how to use the **fully functional** receipt upload and PDF transaction extraction features in your Personal-Finance-Manager backend.
 
 ## ✅ **Status: FULLY FUNCTIONAL**
 
@@ -307,7 +307,7 @@ logging.level.com.my_finance_manager_backend.service.GeminiAIService=DEBUG
 
 ## ✅ **Summary**
 
-Your My Finance Manager backend now includes:
+Your Personal-Finance-Manager backend now includes:
 
 - ✅ **Fully functional PDF transaction extraction**
 - ✅ **AI-powered receipt processing**

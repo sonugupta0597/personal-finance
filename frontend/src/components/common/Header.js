@@ -25,7 +25,7 @@ export default function Header() {
     <header className="header">
       <div className="header-content">
         <div className="header-left">
-          <h2 className="app-title">My Finance Manager</h2>
+          <h2 className="app-title">Personal-Finance-Manager</h2>
         </div>
         
         <div className="header-right">

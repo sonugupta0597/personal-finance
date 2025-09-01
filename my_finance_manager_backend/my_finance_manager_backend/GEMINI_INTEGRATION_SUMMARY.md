@@ -1,7 +1,7 @@
 # Gemini AI Integration Summary
 
 ## Overview
-This document summarizes the Gemini AI integration implemented in the My Finance Manager backend to automatically extract financial information from receipts and PDFs.
+This document summarizes the Gemini AI integration implemented in the Personal-Finance-Manager backend to automatically extract financial information from receipts and PDFs.
 
 ## What Was Implemented
 

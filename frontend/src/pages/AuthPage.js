@@ -21,7 +21,7 @@ export default function AuthPage() {
     <div className="auth-page">
       <div className="auth-container">
         <div className="auth-header">
-          <h1>My Finance Manager</h1>
+          <h1>Personal-Finance-Manager</h1>
           <p>Take control of your finances</p>
         </div>
 
