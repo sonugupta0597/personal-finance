@@ -2,7 +2,7 @@
 
 A modern React-based web application for personal finance management with AI-powered receipt scanning capabilities.
 
-## 🚀 Features
+## Features
 
 - **User Authentication**: Secure login and registration system
 - **Transaction Management**: Add, edit, and delete income and expense transactions
@@ -12,7 +12,7 @@ A modern React-based web application for personal finance management with AI-pow
 - **Responsive Design**: Modern UI that works on desktop and mobile devices
 - **Real-time Updates**: Live transaction updates and notifications
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **React 19.1.1** - Modern React with hooks and functional components
 - **React Router 6.8.0** - Client-side routing
@@ -22,7 +22,7 @@ A modern React-based web application for personal finance management with AI-pow
 - **Date-fns 2.30.0** - Date utility library
 - **React Testing Library** - Component testing
 
-## 📋 Prerequisites
+## Prerequisites
 
 Before running this application, make sure you have:
 
@@ -30,7 +30,7 @@ Before running this application, make sure you have:
 - **npm** or **yarn** package manager
 - **Backend API** running on `http://localhost:8080`
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the Repository
 
@@ -59,7 +59,7 @@ npm start
 
 The application will open in your browser at `http://localhost:3000`.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
@@ -87,14 +87,14 @@ src/
 └── assets/                # Static assets and styles
 ```
 
-## 🔧 Available Scripts
+## Available Scripts
 
 - `npm start` - Runs the app in development mode
 - `npm test` - Launches the test runner
 - `npm run build` - Builds the app for production
 - `npm run eject` - Ejects from Create React App (one-way operation)
 
-## 🎨 Key Components
+## Key Components
 
 ### Authentication
 - **LoginForm**: User login with email and password
@@ -124,7 +124,7 @@ The frontend communicates with the backend through RESTful APIs:
 - **Receipts**: `/api/receipts/*` - Receipt upload and processing
 - **Analytics**: `/api/analytics/*` - Financial reports and charts
 
-## 🎯 Key Features Explained
+## Key Features Explained
 
 ### AI-Powered Receipt Scanning
 - Upload PDF receipts through the web interface
@@ -144,7 +144,7 @@ The frontend communicates with the backend through RESTful APIs:
 - Modern UI with smooth animations
 - Accessible design patterns
 
-## 🧪 Testing
+## Testing
 
 Run the test suite:
 
@@ -154,7 +154,7 @@ npm test
 
 The application uses React Testing Library for component testing and Jest as the test runner.
 
-## 📦 Building for Production
+## Building for Production
 
 Create a production build:
 
@@ -164,21 +164,21 @@ npm run build
 
 This creates an optimized build in the `build/` folder ready for deployment.
 
-## 🔒 Security Features
+## Security Features
 
 - JWT-based authentication
 - Secure API communication
 - Input validation and sanitization
 - Protected routes and components
 
-## 🌐 Browser Support
+## Browser Support
 
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -186,18 +186,14 @@ This creates an optimized build in the `build/` folder ready for deployment.
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🆘 Support
+## Support
 
 For support and questions:
 - Check the backend README for API documentation
 - Review the component documentation in the code
 - Open an issue in the repository
 
-## 🔄 Version History
+## Version History
 
 - **v0.1.0** - Initial release with core features
   - User authentication
@@ -207,11 +203,11 @@ For support and questions:
 
  // For Backend 
 
- # My Finance Manager - Backend
+ # Personal-Finance-Manager - Backend
 
 A robust Spring Boot REST API for personal finance management with AI-powered receipt processing using Google Gemini AI.
 
-## 🚀 Features
+## Features
 
 - **RESTful API**: Complete CRUD operations for financial transactions
 - **AI-Powered Receipt Processing**: Google Gemini AI integration for automatic data extraction
@@ -221,7 +217,7 @@ A robust Spring Boot REST API for personal finance management with AI-powered re
 - **Database Integration**: MySQL database with JPA/Hibernate ORM
 - **File Upload**: Secure file handling for receipts and documents
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Spring Boot 3.5.5** - Modern Java framework
 - **Spring Data JPA** - Database abstraction layer
@@ -232,7 +228,7 @@ A robust Spring Boot REST API for personal finance management with AI-powered re
 - **Lombok** - Java boilerplate reduction
 - **Maven** - Build and dependency management
 
-## 📋 Prerequisites
+## Prerequisites
 
 Before running this application, ensure you have:
 
@@ -241,7 +237,7 @@ Before running this application, ensure you have:
 - **MySQL 8.0+** database server
 - **Google Gemini AI API Key** (for receipt processing)
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Database Setup
 
@@ -282,7 +278,7 @@ mvn spring-boot:run
 
 The API will be available at `http://localhost:8080`
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/main/java/com/my_finance_manager_backend/
@@ -330,7 +326,7 @@ src/main/java/com/my_finance_manager_backend/
 └── MyFinanceManagerBackendApplication.java # Main application class
 ```
 
-## 🔌 API Endpoints
+## API Endpoints
 
 ### Authentication
 - `POST /api/auth/register` - User registration
@@ -456,30 +452,6 @@ gemini.api.url=https://generativelanguage.googleapis.com/v1/models/gemini-1.5-fl
 gemini.model.name=gemini-1.5-flash
 ```
 
-## 🧪 Testing
-
-Run the test suite:
-
-```bash
-mvn test
-```
-
-### Test Coverage
-- **Unit Tests**: Service layer testing
-- **Integration Tests**: API endpoint testing
-- **AI Service Tests**: Gemini AI integration testing
-
-## 📦 Building for Production
-
-### Create JAR File
-```bash
-mvn clean package
-```
-
-### Run Production Build
-```bash
-java -jar target/my_finance_manager_backend-0.0.1-SNAPSHOT.jar
-```
 
 ## 🔒 Security Features
 
@@ -507,51 +479,10 @@ export SPRING_DATASOURCE_PASSWORD=your_password
 export GEMINI_API_KEY=your_gemini_api_key
 ```
 
-## 📈 Performance Optimization
+## Performance Optimization
 
 - **Database Indexing**: Optimized database queries
 - **Connection Pooling**: HikariCP connection pool
 - **Caching**: Spring Boot caching support
 - **Async Processing**: Background task processing
-
-## 🔍 Monitoring and Logging
-
-- **Spring Boot Actuator**: Health checks and metrics
-- **Logging**: Structured logging with SLF4J
-- **Error Tracking**: Global exception handling
-- **Performance Monitoring**: Request/response timing
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🆘 Support
-
-For support and questions:
-- Check the API documentation
-- Review the test cases for usage examples
-- Open an issue in the repository
-
-## 🔄 Version History
-
-- **v0.0.1-SNAPSHOT** - Initial release
-  - Core CRUD operations
-  - AI-powered receipt processing
-  - User authentication
-  - Financial analytics
-  - PDF processing capabilities
-
-## 📚 Additional Resources
-
-- [Spring Boot Documentation](https://spring.io/projects/spring-boot)
-- [Google Gemini AI Documentation](https://ai.google.dev/docs)
-- [MySQL Documentation](https://dev.mysql.com/doc/)
 
